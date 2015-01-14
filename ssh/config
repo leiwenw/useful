@@ -1,0 +1,3 @@
+Host *leiwen.me
+IdentityFile /Users/leiwen/.ssh/leiwen2.pem
+User ubuntu
