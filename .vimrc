@@ -1,6 +1,19 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leiwen's vimrc 
-" Version: 1.1 7/25/2014
+" Version: 1.2 6/2/2015
+"
+" General
+" Colors and Fonts
+" Tabs
+" Files, backups and undo
+" VIM UI
+" Moving around, tabs, windows, and buffers
+" Status line
+" Key Mappings
+" Visual mode
+" Misc
+" Spell checking
+" Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -24,17 +37,30 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
+nmap <leader>w :w<cr>
+nmap <leader>q :q<cr>
 
+" Automaticall change current dir
+" set autochdir
+
+set wildmode=longest,list,full
+set wildmenu
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
+au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-colorscheme desert
-set background=dark
+" set background=dark
+colorscheme monokai
+" colorscheme desert
+" colorscheme blackdust
+
+" colorscheme molokai
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -51,18 +77,17 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Font settings
-"set guifont=Monospace\ 9
+set guifont=Monospace\ 8
 " Allow F1/F2 to toggle font
-":map <F1> :set guifont=Monospace\ 10 <CR>
-":map <F2> :set guifont=Monospace\ 9 <CR>
+:map <F1> :set guifont=Monospace\ 10 <CR>
+:map <F2> :set guifont=Monospace\ 9 <CR>
+:map <F3> :set guifont=Monospace\ 8 <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " == soft tabs ==
-set expandtab 
-set shiftwidth=2 
-set softtabstop=2
+set expandtab shiftwidth=4 softtabstop=4
 
 " == hard tabs ==
 "set shiftwidth=2
@@ -71,10 +96,11 @@ set softtabstop=2
 "set shiftwidth=2 softtabstop=2
 
 " == other tabs  ==
-set tabstop=2 " width of a TAB always 2
+set tabstop=4 " width of a TAB always 2
 set wrap
 set autoindent
-set smartindent
+set cindent
+"set smartindent
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -169,6 +195,9 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
+if has('mouse')
+    set mouse=a
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -201,7 +230,7 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+" map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
@@ -278,3 +307,14 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+" vp doesn't replace paste buffer
+" function! RestoreRegister()
+"   let @" = s:restore_reg
+"   return ''
+" endfunction
+" function! s:Repl()
+"   let s:restore_reg = @"
+"   return "p@=RestoreRegister()\<cr>"
+" endfunction
+" vmap <silent> <expr> p <sid>Repl()
