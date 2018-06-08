@@ -23,6 +23,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
+set backspace=2
 
 " Enable filetype plugins
 filetype plugin on
@@ -77,11 +78,15 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Font settings
-set guifont=Monospace\ 8
+set guifont=Monospace\ 9
 " Allow F1/F2 to toggle font
 :map <F1> :set guifont=Monospace\ 10 <CR>
 :map <F2> :set guifont=Monospace\ 9 <CR>
 :map <F3> :set guifont=Monospace\ 8 <CR>
+nnoremap <F4> :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
+
+" Highlight current line
+set cursorline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs
@@ -96,10 +101,10 @@ set expandtab shiftwidth=4 softtabstop=4
 "set shiftwidth=2 softtabstop=2
 
 " == other tabs  ==
-set tabstop=4 " width of a TAB always 2
+set tabstop=4 " width of a TAB always 4
 set wrap
 set autoindent
-set cindent
+"set cindent
 "set smartindent
 
 
@@ -195,6 +200,7 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
+" select, copy and paste
 if has('mouse')
     set mouse=a
 endif
@@ -210,8 +216,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :nmap <c-s> :w<CR>
-:imap <c-s> <Esc>:w<CR>a
-:imap <c-s> <Esc><c-s>
+:imap <c-s> <Esc><c-s>a
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
