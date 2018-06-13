@@ -1,0 +1,9 @@
+[diff]
+    tool = tkdiff
+[difftool]
+	prompt = false
+[user]
+	name = Leiwen Wu
+	email = leiwenw@gmail.com
+[core]
+	editor = vim
