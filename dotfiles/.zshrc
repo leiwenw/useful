@@ -8,7 +8,7 @@ alias g='grep'
 alias gr='g -r'
 alias c='clear'
 alias gv='gvim'
-alias sb='source ~/.bash_profile'
+alias sz='source ~/.zshrc'
 # git commamands simplified
 alias gst='git status'
 alias gco='git checkout'

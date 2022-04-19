@@ -88,6 +88,7 @@ nnoremap <F4> :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 " Highlight current line
 set cursorline
+hi CursorLineNr term=bold cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs
